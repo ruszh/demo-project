@@ -1,0 +1,60 @@
+[
+    {
+        "id": 1,
+        "service": {
+            "id": 1,
+            "name": "Test Service",
+            "initialPrice": 100,
+            "price": 200,
+            "serviceCategory": {
+                "id": 1,
+                "name": "TEST"
+            },
+            "time": 11111111
+        },
+        "customer": {
+            "id": 1,
+            "name": "Yevhenii",
+            "surname": "Parfonov",
+            "date_of_birth": "1998-06-06",
+            "phone": "380957446020",
+            "email": "evgeniy.parf@gmail.com",
+            "notes": "some random note"
+        },
+        "dateAdded": "2018-08-10",
+        "dateProc": "2018-08-11T08:30:00.000+0000",
+        "serviceStatus": {
+            "id": 1,
+            "name": "Предварительная запись"
+        }
+    },
+    {
+        "id": 2,
+        "service": {
+            "id": 1,
+            "name": "Test Service",
+            "initialPrice": 100,
+            "price": 200,
+            "serviceCategory": {
+                "id": 1,
+                "name": "TEST"
+            },
+            "time": 11111111
+        },
+        "customer": {
+            "id": 8,
+            "name": "Dmytro",
+            "surname": "Zimenkov",
+            "date_of_birth": "1997-07-22",
+            "phone": "380333333333",
+            "email": "dima.zimenkov@gmail.com",
+            "notes": "some random note"
+        },
+        "dateAdded": "2018-08-10",
+        "dateProc": "2018-08-12T07:00:00.000+0000",
+        "serviceStatus": {
+            "id": 1,
+            "name": "Предварительная запись"
+        }
+    }
+]

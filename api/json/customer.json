@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Yevhenii",
+        "surname": "Parfonov",
+        "date_of_birth": "1998-06-06",
+        "phone": "380957446020",
+        "email": "evgeniy.parf@gmail.com",
+        "notes": "some random note"
+    },
+    {
+        "id": 8,
+        "name": "Dmytro",
+        "surname": "Zimenkov",
+        "date_of_birth": "1997-07-22",
+        "phone": "380333333333",
+        "email": "dima.zimenkov@gmail.com",
+        "notes": "some random note"
+    }
+]

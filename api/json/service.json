@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "name": "Test Service",
+        "initialPrice": 100,
+        "price": 200,
+        "serviceCategory": {
+            "id": 1,
+            "name": "TEST"
+        },
+        "time": 11111111
+    }
+]
