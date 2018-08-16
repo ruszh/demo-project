@@ -33,6 +33,7 @@ class App extends Component {
               <th scope="col">Name</th>
               <th scope="col">Surname</th>
               <th scope="col">Phone</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>            

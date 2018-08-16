@@ -16,5 +16,14 @@
         "phone": "380333333333",
         "email": "dima.zimenkov@gmail.com",
         "notes": "some random note"
+    },
+    {
+        "id": 5,
+        "name": "Ivan",
+        "surname": "Ivanovich",
+        "date_of_birth": "1993-07-22",
+        "phone": "380334653333",
+        "email": "ivan.ivanovich@gmail.com",
+        "notes": "some random note"
     }
 ]
