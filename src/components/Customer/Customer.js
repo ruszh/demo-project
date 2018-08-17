@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Modal from "react-responsive-modal";
+import './Customer.css';
 
 class Customer extends Component {
   state = {
     open: false,
-    customer: {}
+    customer: {},
+    editMode: false
   };
 
   componentWillMount() {
@@ -31,10 +33,19 @@ class Customer extends Component {
     this.setState({
       customer: customer
     });
+   
   };
 
+  handleEdit = () => {
+
+    
+    this.setState({
+      editMode: !this.state.editMode
+    })
+  }
+
   render() {
-    const { open, customer } = this.state;
+    const { open, customer, editMode } = this.state;
 
     return (
       <tr key={customer.id}>
@@ -52,18 +63,20 @@ class Customer extends Component {
                   <input
                     type="text"
                     name="name"
-                    className="form-control"
+                    className="form-control not-edit"
                     placeholder="Name"
                     value={customer.name}
+                    disabled={!editMode}
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="text"
                     name="surname"
-                    className="form-control"
+                    className="form-control not-edit"
                     placeholder="Surname"
                     value={customer.surname}
+                    disabled={!editMode}
                   />
                 </div>
                 <div className="form-group">
@@ -71,9 +84,10 @@ class Customer extends Component {
                   <input
                     type="text"
                     name="phone"
-                    className="form-control"
+                    className="form-control not-edit"
                     placeholder="Phone number"
                     value={customer.phone}
+                    disabled={!editMode}
                   />
                 </div>
                 <div className="form-group">
@@ -81,10 +95,11 @@ class Customer extends Component {
                   <input
                     type="email"
                     name="email"
-                    className="form-control"
+                    className="form-control not-edit"
                     aria-describedby="emailHelp"
                     placeholder="email"
                     value={customer.email}
+                    disabled={!editMode}
                   />
                 </div>
                 <div className="form-group">
@@ -92,21 +107,25 @@ class Customer extends Component {
                   <input
                     type="text"
                     name="date_of_birth"
-                    className="form-control"
+                    className="form-control not-edit"
                     placeholder="Date of birth"
                     value={customer.date_of_birth}
+                    disabled={!editMode}
                   />
                 </div>
                 <div className="form-group">
                   <label for="exampleInputPassword1">Notes:</label>
                   <textarea
-                    className="form-control"
+                    className="form-control not-edit"
                     name="notes"
                     placeholder="Date of birth"
                     value={customer.notes}
+                    disabled={!editMode}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">
+
+                <button onClick={this.handleEdit} className="btn btn-success float-left">Edit</button>
+                <button type="submit" className="btn btn-primary float-right">
                   Submit
                 </button>
               </form>
@@ -119,4 +138,3 @@ class Customer extends Component {
 }
 
 export default Customer;
-
