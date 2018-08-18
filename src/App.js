@@ -11,13 +11,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch("http://localhost:8000/")
+    fetch("https://thawing-fortress-57364.herokuapp.com/api/customers")
       .then(res => res.json())
       .then(res => {
         this.setState({
           customersList: res
-        });
-        console.log(this.state);
+        });        
       })
       .catch(err => console.log(err));
   }

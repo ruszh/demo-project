@@ -4,6 +4,7 @@ const app = express();
 
 const customerData = fs.readFileSync('json/customer.json', 'utf8');
 
+
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');

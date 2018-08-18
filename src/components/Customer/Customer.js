@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Modal from "react-responsive-modal";
-import './Customer.css';
+import "./Customer.css";
 
 class Customer extends Component {
   state = {
     open: false,
     customer: {},
-    editMode: false
+    editMode: false,
+    editedCustomer: null
   };
 
   componentWillMount() {
@@ -25,27 +26,39 @@ class Customer extends Component {
 
   submitHandler = event => {
     event.preventDefault();
+    if (this.state.editedCustomer === null) return;
+    this.setState({
+      customer: this.state.editedCustomer,
+      editedCustomer: null,
+      open: false,
+      editMode: false
+    });
   };
 
   handleChange = event => {
-    const customer = this.state.customer;
-    customer[event.target.name] = event.target.value;
+    const { customer, editedCustomer } = this.state;
+    const customerCopy = Object.assign({}, editedCustomer ? editedCustomer : customer);
+    customerCopy[event.target.name] = event.target.value;
     this.setState({
-      customer: customer
+      editedCustomer: customerCopy
     });
-   
   };
 
   handleEdit = () => {
-
-    
     this.setState({
       editMode: !this.state.editMode
-    })
-  }
+    });
+  };
+
+  handleCancel = () => {
+    this.setState({
+      editedCustomer: null,
+      editMode: false
+    });
+  };
 
   render() {
-    const { open, customer, editMode } = this.state;
+    const { open, customer, editMode, editedCustomer } = this.state;
 
     return (
       <tr key={customer.id}>
@@ -65,8 +78,9 @@ class Customer extends Component {
                     name="name"
                     className="form-control not-edit"
                     placeholder="Name"
-                    value={customer.name}
+                    value={editedCustomer ? editedCustomer.name : customer.name}
                     disabled={!editMode}
+                    
                   />
                 </div>
                 <div className="form-group">
@@ -75,7 +89,9 @@ class Customer extends Component {
                     name="surname"
                     className="form-control not-edit"
                     placeholder="Surname"
-                    value={customer.surname}
+                    value={
+                      editedCustomer ? editedCustomer.surname : customer.surname
+                    }
                     disabled={!editMode}
                   />
                 </div>
@@ -86,7 +102,9 @@ class Customer extends Component {
                     name="phone"
                     className="form-control not-edit"
                     placeholder="Phone number"
-                    value={customer.phone}
+                    value={
+                      editedCustomer ? editedCustomer.phone : customer.phone
+                    }
                     disabled={!editMode}
                   />
                 </div>
@@ -98,7 +116,9 @@ class Customer extends Component {
                     className="form-control not-edit"
                     aria-describedby="emailHelp"
                     placeholder="email"
-                    value={customer.email}
+                    value={
+                      editedCustomer ? editedCustomer.email : customer.email
+                    }
                     disabled={!editMode}
                   />
                 </div>
@@ -109,7 +129,11 @@ class Customer extends Component {
                     name="date_of_birth"
                     className="form-control not-edit"
                     placeholder="Date of birth"
-                    value={customer.date_of_birth}
+                    value={
+                      editedCustomer
+                        ? editedCustomer.date_of_birth
+                        : customer.date_of_birth
+                    }
                     disabled={!editMode}
                   />
                 </div>
@@ -119,14 +143,31 @@ class Customer extends Component {
                     className="form-control not-edit"
                     name="notes"
                     placeholder="Date of birth"
-                    value={customer.notes}
+                    value={
+                      editedCustomer ? editedCustomer.notes : customer.notes
+                    }
                     disabled={!editMode}
                   />
                 </div>
 
-                <button onClick={this.handleEdit} className="btn btn-success float-left">Edit</button>
+                {this.state.editMode ? (
+                  <button
+                    onClick={this.handleCancel}
+                    className="btn btn-danger float-left"
+                  >
+                    Cancel
+                  </button>
+                ) : (
+                  <button
+                    onClick={this.handleEdit}
+                    className="btn btn-success float-left"
+                  >
+                    Edit
+                  </button>
+                )}
+
                 <button type="submit" className="btn btn-primary float-right">
-                  Submit
+                  Save
                 </button>
               </form>
             </div>
