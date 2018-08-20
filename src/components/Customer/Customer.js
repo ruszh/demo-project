@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Modal from "react-responsive-modal";
 import "./Customer.css";
+import axios from "axios";
+
+const URL = "https://thawing-fortress-57364.herokuapp.com/api/customers";
 
 class Customer extends Component {
   state = {
@@ -21,23 +24,48 @@ class Customer extends Component {
   };
 
   onCloseModal = () => {
-    this.setState({ open: false });
-  };
-
-  submitHandler = event => {
-    event.preventDefault();
-    if (this.state.editedCustomer === null) return;
     this.setState({
-      customer: this.state.editedCustomer,
-      editedCustomer: null,
       open: false,
+      editedCustomer: null,
       editMode: false
     });
   };
 
+  updateHandler = data => {
+    const url = `${URL}/${this.state.editedCustomer.id}`;
+    return axios.put(url, data, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  };
+
+  submitHandler = event => {
+    event.preventDefault();
+    const editedCustomer = this.state.editedCustomer;
+    if (editedCustomer === null) return;
+    const data = JSON.stringify(editedCustomer);
+
+    this.updateHandler(data)
+      .then(res => {
+        if (res.data === "OK") {
+          this.setState({
+            customer: editedCustomer,
+            editedCustomer: null,
+            open: false,
+            editMode: false
+          });
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
   handleChange = event => {
     const { customer, editedCustomer } = this.state;
-    const customerCopy = Object.assign({}, editedCustomer ? editedCustomer : customer);
+    const customerCopy = Object.assign(
+      {},
+      editedCustomer ? editedCustomer : customer
+    );
     customerCopy[event.target.name] = event.target.value;
     this.setState({
       editedCustomer: customerCopy
@@ -80,7 +108,6 @@ class Customer extends Component {
                     placeholder="Name"
                     value={editedCustomer ? editedCustomer.name : customer.name}
                     disabled={!editMode}
-                    
                   />
                 </div>
                 <div className="form-group">

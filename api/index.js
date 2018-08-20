@@ -1,7 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
-
+const jsonParser = require('body-parser').json();
 const customerData = fs.readFileSync('json/customer.json', 'utf8');
 
 
@@ -14,6 +14,10 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
     res.send(customerData)
+})
+
+app.put('api/update/', jsonParser, (req, res) => {
+    console.log(res)
 })
 
 app.listen(8000, () => {

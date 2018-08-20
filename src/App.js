@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Customer from "./components/Customer/Customer";
+import axios from "axios";
+// import Menu from "./components/Menu/Menu";
 
 class App extends Component {
   constructor(props) {
@@ -11,12 +13,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch("https://thawing-fortress-57364.herokuapp.com/api/customers")
-      .then(res => res.json())
+    axios
+      .get("https://thawing-fortress-57364.herokuapp.com/api/customers")
       .then(res => {
         this.setState({
-          customersList: res
-        });        
+          customersList: res.data
+        });
       })
       .catch(err => console.log(err));
   }
@@ -24,23 +26,25 @@ class App extends Component {
   render() {
     const customers = this.state.customersList;
     return (
-      <div className="App container">
-        <h1>Customers</h1>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Surname</th>
-              <th scope="col">Phone</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>            
-            {customers.map(customer => (
-              <Customer customer={customer} key={customer.id}/>
-            ))}
-          </tbody>
-        </table>
+      <div className="App">      
+        <div className="container">                     
+            <h1>Customers</h1>
+            <table className="table table-hover col-10">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Surname</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col" />
+                </tr>
+              </thead>
+              <tbody>
+                {customers.map(customer => (
+                  <Customer customer={customer} key={customer.id} />
+                ))}
+              </tbody>
+            </table>
+          </div>        
       </div>
     );
   }
