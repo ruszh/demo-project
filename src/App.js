@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Customer from "./components/Customer/Customer";
 import axios from "axios";
+import AddCustomer from './components/AddCustomer/AddCustomer';
 // import Menu from "./components/Menu/Menu";
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
       <div className="App">      
         <div className="container">                     
             <h1>Customers</h1>
+            <AddCustomer />
             <table className="table table-hover col-10">
               <thead>
                 <tr>
