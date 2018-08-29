@@ -42,10 +42,7 @@ class ModalWindow extends Component {
     const data = JSON.stringify(this.state.customer);
     const { onSubmit } = this.props;
     
-    onSubmit(data)
-      .then(res => {
-        console.log(res);
-      })
+    onSubmit(data)      
       .catch(err => console.log(err));
   };
 

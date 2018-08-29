@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import axios from "axios";
-import { isEqual } from "lodash";
+import { isEqual } from 'lodash';
 
 const emptyCustomer = {
   name: "",
@@ -29,10 +29,10 @@ class AddCustomer extends Component {
   };
 
   postHandler = data => {
-    if (isEqual(data, emptyCustomer)) {
-      console.log("You can`t add any data");
-      return false;
-    }
+    if(isEqual(data, emptyCustomer)) {
+        console.log('You can`t add any data')
+        return false;
+    }; 
     return axios.post(URL, data, {
       headers: {
         "Content-Type": "application/json"
@@ -43,8 +43,8 @@ class AddCustomer extends Component {
   render() {
     const { open } = this.state;
     const wrapperStyle = {
-      "margin-bottom": "10px"
-    };
+        marginBottom: "10px"
+    }
     return (
       <div className="float-left" style={wrapperStyle}>
         <button onClick={this.onOpenModal} className="btn btn-primary">

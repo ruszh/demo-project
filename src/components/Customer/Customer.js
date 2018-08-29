@@ -33,6 +33,11 @@ class Customer extends Component {
       headers: {
         "Content-Type": "application/json"
       }
+    })
+    .then(res => {
+      if(res.data === 'OK') this.setState({
+        open: false
+      })
     });
   };
 
