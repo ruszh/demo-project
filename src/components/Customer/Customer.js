@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./Customer.css";
 import axios from "axios";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import config from '../../config';
 
-const URL = "https://thawing-fortress-57364.herokuapp.com/api/customers";
 
 class Customer extends Component {
   state = {
@@ -28,7 +28,7 @@ class Customer extends Component {
   };
   
   updateHandler = data => {
-    const url = `${URL}/${this.state.customer.id}`;
+    const url = `${config.URL}/${this.state.customer.id}`;
     return axios.put(url, data, {
       headers: {
         "Content-Type": "application/json"

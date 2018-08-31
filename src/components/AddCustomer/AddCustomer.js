@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import axios from "axios";
 import { isEqual } from 'lodash';
+import config from '../../config';
 
 const emptyCustomer = {
   name: "",
@@ -12,7 +13,6 @@ const emptyCustomer = {
   notes: ""
 };
 
-const URL = "https://thawing-fortress-57364.herokuapp.com/api/customers";
 
 class AddCustomer extends Component {
   state = {
@@ -33,7 +33,7 @@ class AddCustomer extends Component {
         console.log('You can`t add any data')
         return false;
     }; 
-    return axios.post(URL, data, {
+    return axios.post(config.URL, data, {
       headers: {
         "Content-Type": "application/json"
       }

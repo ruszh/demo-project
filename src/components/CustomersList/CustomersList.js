@@ -1,54 +1,38 @@
 import React, { Component } from "react";
 import Customer from "../Customer/Customer";
-import axios from "axios";
 import AddCustomer from "../AddCustomer/AddCustomer";
 import Search from '../Search/Search';
+import config from '../../config';
 // import Menu from "./components/Menu/Menu";
 
-const URL = "https://thawing-fortress-57364.herokuapp.com/api/customers";
 
 class CustomersList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      customersList: []
-    };
-  }
+  
+  // searchHandler = (query) => {
+  //   if(!query) {
+  //     this.getCustomers();
+  //     return;
+  //   }
+  //   axios.get(URL + query)
+  //       .then(res => {
+  //         this.setState({
+  //           customersList: res.data
+  //         })
+  //       })
+  // }
+  
 
-  searchHandler = (query) => {
-    if(!query) {
-      this.getCustomers();
-      return;
-    }
-    axios.get(URL + query)
-        .then(res => {
-          this.setState({
-            customersList: res.data
-          })
-        })
-  }
-  getCustomers = () => {
-    axios
-      .get(URL)
-      .then(res => {
-        this.setState({
-          customersList: res.data
-        });
-      })
-      .catch(err => console.log(err));
-  }
-
-  componentWillMount() {
-    this.getCustomers();
+  componentWillMount = () => {
+    this.props.getCustomers();
   }
 
   render() {
-    const customers = this.state.customersList;
+    const { customers } = this.props;
     return (
       <div className="container">
         <h1>Customers</h1>
-        <AddCustomer />        
-        <Search onSearch={this.searchHandler}/>
+        {/* <AddCustomer />        
+        <Search onSearch={this.searchHandler}/> */}
         <table className="table table-hover col-10">
           <thead>
             <tr>
