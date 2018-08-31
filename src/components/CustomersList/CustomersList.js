@@ -27,7 +27,7 @@ class CustomersList extends Component {
   }
 
   render() {
-    const { customers } = this.props;
+    const { customersList } = this.props;
     return (
       <div className="container">
         <h1>Customers</h1>
@@ -43,7 +43,7 @@ class CustomersList extends Component {
             </tr>
           </thead>
           <tbody>
-            {customers.map(customer => (
+            {customersList.map(customer => (
               <Customer customer={customer} key={customer.id} />
             ))}
           </tbody>

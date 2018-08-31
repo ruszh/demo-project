@@ -20,10 +20,16 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = store => {
+  return {
+    customersList: store.customersList
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     getCustomersListAction: () => dispatch(getCustomers())
   }
 }
 
-export default connect(mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
