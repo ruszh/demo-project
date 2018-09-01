@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class Search extends Component {
   state = {
@@ -16,7 +17,7 @@ class Search extends Component {
       this.setState({
         value: e.target.value
       });
-    }
+    } 
   };
 
   searchHandler = () => {
@@ -37,11 +38,11 @@ class Search extends Component {
           <button
             type="button"
             onClick={this.searchHandler}
-            className="btn btn-outline-secondary"
+            className="btn btn-success"
           >
             Search
           </button>
-          <select className="custom-select col-3" onChange={this.changeHandler}>
+          <select className="search-select custom-select col-sm-3" onChange={this.changeHandler}>
             <option defaulvalue="true">Name</option>
             <option value="surname">Surname</option>
             <option value="phone">Phone</option>
@@ -49,7 +50,7 @@ class Search extends Component {
           </select>
           <input
             type="text"
-            className="form-control"
+            className="search-input form-control"
             aria-label="Text input with segmented dropdown button"
             onChange={this.changeHandler}
           />
@@ -57,6 +58,11 @@ class Search extends Component {
       </div>
     );
   }
+}
+
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  getCustomers: PropTypes.func.isRequired
 }
 
 export default Search;

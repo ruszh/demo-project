@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getCustomers, searchCustomers } from "./actions/CustomersListActions";
 import "./App.css";
 import CustomersList from "./components/CustomersList/CustomersList";
+import PropTypes from 'prop-types';
 // import Menu from "./components/Menu/Menu";
 
 class App extends Component {
@@ -20,6 +21,13 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  getCustomersListAction: PropTypes.func.isRequired,
+  customersList: PropTypes.object,
+  searchCustomers: PropTypes.func.isRequired
+}
+
 
 const mapStateToProps = store => {
   return {

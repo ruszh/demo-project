@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App-logo {
@@ -22,7 +24,13 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.preloader {
+  width: 80px;
+}
+.search-select {
+  min-width: 100px;
+}
+.search-input {
+  min-width: 100px;
 }
