@@ -27,12 +27,12 @@ class CustomersList extends Component {
   }
 
   render() {
-    const { customersList, search } = this.props;
+    const { customersList, search, getCustomers } = this.props;
     return (
       <div className="container">
         <h1>Customers</h1>
         <AddCustomer />        
-        <Search onSearch={search}/>
+        <Search onSearch={search} getCustomers={getCustomers}/>
         <table className="table table-hover col-10">
           <thead>
             <tr>

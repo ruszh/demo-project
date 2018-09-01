@@ -20,14 +20,13 @@ class Search extends Component {
   };
 
   searchHandler = () => {
-    const { onSearch } = this.props;
+    const { onSearch, getCustomers } = this.props;
     const option = this.state.selectedOption;
     const value = this.state.value;
-    if(!value) {
-      onSearch('');
-    }
-    else {
-      onSearch(`/${option}/${value}`)
+    if (!value) {
+      getCustomers();
+    } else {
+      onSearch(`/${option}/${value}`);
     }
   };
 
@@ -35,7 +34,11 @@ class Search extends Component {
     return (
       <div>
         <div className="input-group col-9">
-          <button type="button" onClick={this.searchHandler} className="btn btn-outline-secondary">
+          <button
+            type="button"
+            onClick={this.searchHandler}
+            className="btn btn-outline-secondary"
+          >
             Search
           </button>
           <select className="custom-select col-3" onChange={this.changeHandler}>

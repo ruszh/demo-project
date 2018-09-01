@@ -34,11 +34,7 @@ export function getCustomers() {
 }
 
 export function searchCustomers(query) {
-  return dispatch => {
-    if (!query) {
-      getCustomers();
-      return;
-    }
+  return dispatch => {    
     dispatch({
       type: SEARCH_REQUEST,
       payload: true
