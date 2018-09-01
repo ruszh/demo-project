@@ -3,18 +3,26 @@ import React, { Component } from "react";
 class Search extends Component {
   state = {
     selectedOption: "name",
-    query: ""
-  };
-  changeHandler = e => {
-    this.setState({
-      selectedOption: e.target.value
-    });
+    query: "",
+    value: ""
   };
 
-  inputSearchHandler = e => {
+  changeHandler = e => {
+    if (e.target.tagName === "SELECT") {
+      this.setState({
+        selectedOption: e.target.value
+      });
+    } else {
+      this.setState({
+        value: e.target.value
+      });
+    }
+  };
+
+  searchHandler = () => {
     const { onSearch } = this.props;
     const option = this.state.selectedOption;
-    const value = e.target.value;
+    const value = this.state.value;
     if(!value) {
       onSearch('');
     }
@@ -27,9 +35,9 @@ class Search extends Component {
     return (
       <div>
         <div className="input-group col-9">
-          {/* <button type="button" onClick={this.searchHandler} className="btn btn-outline-secondary">
-            get state
-          </button> */}
+          <button type="button" onClick={this.searchHandler} className="btn btn-outline-secondary">
+            Search
+          </button>
           <select className="custom-select col-3" onChange={this.changeHandler}>
             <option defaulvalue="true">Name</option>
             <option value="surname">Surname</option>
@@ -40,7 +48,7 @@ class Search extends Component {
             type="text"
             className="form-control"
             aria-label="Text input with segmented dropdown button"
-            onChange={this.inputSearchHandler}
+            onChange={this.changeHandler}
           />
         </div>
       </div>

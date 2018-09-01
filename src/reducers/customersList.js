@@ -1,7 +1,10 @@
 import {
   GET_CUSTOMERS_REQUEST,
   GET_CUSTOMERS_SUCCESS,
-  GET_CUSTOMERS_ERROR
+  GET_CUSTOMERS_ERROR,
+  SEARCH_REQUEST,
+  SEARCH_SUCCESS,
+  SEARCH_ERROR
 } from "../actions/CustomersListActions";
 
 const initialState = {
@@ -24,6 +27,20 @@ export function customersListReducer(state = initialState, action) {
       };
 
     case GET_CUSTOMERS_ERROR:
+      return { ...state, isLoading: false, error: action.payload };
+    
+      case SEARCH_REQUEST:
+      return { ...state, isLoading: action.payload, error: "" };
+
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        customersList: action.payload,
+        isLoading: false,
+        error: ""
+      };
+
+    case SEARCH_ERROR:
       return { ...state, isLoading: false, error: action.payload };
 
     default:

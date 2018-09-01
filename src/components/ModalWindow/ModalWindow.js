@@ -75,7 +75,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label for="exampleInputPassword1">Phone:</label>
+              <label htmlFor="exampleInputPassword1">Phone:</label>
               <input
                 type="text"
                 name="phone"
@@ -86,7 +86,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label for="exampleInputEmail1">Email address:</label>
+              <label htmlFor="exampleInputEmail1">Email address:</label>
               <input
                 type="email"
                 name="email"
@@ -98,7 +98,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label for="exampleInputPassword1">Date of birth:</label>
+              <label htmlFor="exampleInputPassword1">Date of birth:</label>
               <input
                 type="text"
                 name="date_of_birth"
@@ -109,7 +109,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label for="exampleInputPassword1">Notes:</label>
+              <label htmlFor="exampleInputPassword1">Notes:</label>
               <textarea
                 className="form-control not-edit"
                 name="notes"
