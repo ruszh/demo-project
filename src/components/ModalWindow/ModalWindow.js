@@ -7,14 +7,6 @@ class ModalWindow extends Component {
     editMode: false
   };
 
-//   componentWillMount() {
-//     const { customer } = this.props;
-//     this.setState({
-//       customer: customer
-//     });
-//   }
-
-  
   handleChange = event => {
     const { customer } = this.state.customer ? this.state : this.props;
     const customerCopy = Object.assign({}, customer);
@@ -37,13 +29,10 @@ class ModalWindow extends Component {
     });
   };
 
-  submitHandler = (event) => {
-    event.preventDefault();      
+  submitHandler = event => {
+    event.preventDefault();
     const data = JSON.stringify(this.state.customer);
-    const { onSubmit } = this.props;
-    
-    onSubmit(data)      
-      .catch(err => console.log(err));
+    this.props.onSubmit(data);
   };
 
   render() {
@@ -53,7 +42,7 @@ class ModalWindow extends Component {
     return (
       <Modal open={open} onClose={closeModal} center>
         <div className="container">
-          <form onChange={this.handleChange} onSubmit={(e) => e.preventDefault()}>
+          <form onChange={this.handleChange} onSubmit={e => e.preventDefault()}>
             <div className="form-group">
               <input
                 type="text"
@@ -135,7 +124,11 @@ class ModalWindow extends Component {
               </button>
             )}
 
-            <button onClick={this.submitHandler} type="submit" className="btn btn-primary float-right">
+            <button
+              onClick={this.submitHandler}
+              type="submit"
+              className="btn btn-primary float-right"
+            >
               Save
             </button>
           </form>

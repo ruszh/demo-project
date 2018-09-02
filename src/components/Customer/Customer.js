@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import "./Customer.css";
 import axios from "axios";
 import ModalWindow from "../ModalWindow/ModalWindow";
-import config from '../../config';
-
+import config from "../../config";
 
 class Customer extends Component {
   state = {
     open: false,
-    customer: {}    
+    customer: {}
   };
 
   componentWillMount() {
@@ -26,22 +25,24 @@ class Customer extends Component {
       open: false
     });
   };
-  
+
   updateHandler = data => {
     const url = `${config.URL}/${this.state.customer.id}`;
-    return axios.put(url, data, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => {
-      if(res.data === 'OK') this.setState({
-        open: false
+    return axios
+      .put(url, data, {
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-    });
+      .then(res => {
+        if (res.data === "OK")
+          this.setState({
+            open: false
+          });
+      })
+      .catch(err => console.log(err));
   };
 
-  
   render() {
     const { open, customer } = this.state;
 

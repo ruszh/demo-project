@@ -1,32 +1,71 @@
 import React, { Component } from "react";
 import "./Menu.css";
-import SideNav, {
-  Toggle,
-  Nav,
-  NavItem,
-  NavIcon,
-  NavText
-} from "@trendmicro/react-sidenav";
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import styled from "styled-components";
+import SideNav, { NavItem, NavText, NavIcon } from "@trendmicro/react-sidenav";
+import { Link } from "react-router-dom";
+import "@trendmicro/react-sidenav/dist/react-sidenav.css";
+
+const StyledSideNav = styled(SideNav)`
+  background: #007bff;
+  margin-right: 64px;
+`;
 
 class Menu extends Component {
+  state = {
+    selected: "customers"
+  };
   render() {
+    const { toggle } = this.props;
     return (
-      <SideNav
+      <StyledSideNav
         onSelect={selected => {
-          // Add your code here
+          this.setState({
+            selected: selected
+          });
+          
+          console.log(this.state);
         }}
+        onToggle={toggle}
       >
         <SideNav.Toggle />
-        <SideNav.Nav defaultSelected="home">
-          <NavItem eventKey="home">
+        <SideNav.Nav>
+          <NavItem eventKey="customers">
             <NavIcon>
-              <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+              <i
+                className="fa fa-fw fa-home"
+                style={{ fontSize: "1.75em", verticalAlign: "middle" }}
+              />
             </NavIcon>
-            <NavText>Home</NavText>
-          </NavItem>          
+            <NavText title="customers">
+              <Link to="/">Customers</Link>
+            </NavText>
+          </NavItem>
         </SideNav.Nav>
-      </SideNav>
+        <SideNav.Nav>
+          <NavItem eventKey="companies">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-home"
+                style={{ fontSize: "1.75em", verticalAlign: "middle" }}
+              />
+            </NavIcon>
+            <NavText title="companies">
+              <Link to="/companies">Companies</Link>
+            </NavText>
+          </NavItem>
+          <NavItem eventKey="services">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-home"
+                style={{ fontSize: "1.75em", verticalAlign: "middle" }}
+              />
+            </NavIcon>
+            <NavText title="services">
+              <Link to="/services">Services</Link>
+            </NavText>
+          </NavItem>
+        </SideNav.Nav>
+      </StyledSideNav>
     );
   }
 }

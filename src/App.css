@@ -34,3 +34,10 @@
 .search-input {
   min-width: 100px;
 }
+
+a {
+  text-decoration: none;
+}
+.main-wrapper {
+  transition: all .15s;
+}
