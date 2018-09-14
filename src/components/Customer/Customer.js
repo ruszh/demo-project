@@ -12,7 +12,7 @@ class Customer extends Component {
 
   componentWillMount() {
     this.setState({
-      customer: this.props.customer
+      customer: this.props.data
     });
   }
 
@@ -45,6 +45,7 @@ class Customer extends Component {
 
   render() {
     const { open, customer } = this.state;
+
 
     return (
       <tr>

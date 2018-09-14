@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getCustomers, searchCustomers } from "./actions/CustomersListActions";
-import "./App.css";
+import { getServicesList } from "./actions/ServicesListActions";
 import PropTypes from "prop-types";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { withRouter } from "react-router";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
+
 //Components
 import CustomersList from "./components/CustomersList/CustomersList";
-import Services from "./components/Services/Services";
+import ServicesList from "./components/ServicesList/ServicesList";
 import Companies from "./components/Companies/Companies";
 import Menu from "./components/Menu/Menu";
 
@@ -19,27 +20,32 @@ class App extends Component {
   toggleMenu = () => {
     this.setState({
       menuExpanded: !this.state.menuExpanded
-    })
-  }
+    });
+  };
 
   render() {
     const {
       getCustomersListAction,
       customersList,
-      searchCustomers
+      searchCustomers,
+      getServicesListAction,
+      servicesList
     } = this.props;
 
     return (
       <Router>
         <div className="App">
-          <Menu toggle={this.toggleMenu}/>
-          <div className='main-wrapper' style={{
-            marginLeft: this.state.menuExpanded ? 240 : 64            
-          }}>
+          <Menu toggle={this.toggleMenu} />
+          <div
+            className="main-wrapper"
+            style={{
+              marginLeft: this.state.menuExpanded ? 240 : 64
+            }}
+          >
             <Route
               exact
               path="/"
-              render={props => (
+              render={() => (
                 <CustomersList
                   customersList={customersList.customersList}
                   isLoading={customersList.isLoading}
@@ -48,7 +54,16 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/services" render={props => <Services />} />
+            <Route
+              path="/services"
+              render={() => (
+                <ServicesList
+                  servicesList={servicesList.servicesList}
+                  isLoading={servicesList.isLoading}
+                  getServicesList={getServicesListAction}
+                />
+              )}
+            />
             <Route path="/companies" render={props => <Companies />} />
           </div>
         </div>
@@ -65,14 +80,16 @@ App.propTypes = {
 
 const mapStateToProps = store => {
   return {
-    customersList: store.customersList
+    customersList: store.customersList,
+    servicesList: store.servicesList
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getCustomersListAction: () => dispatch(getCustomers()),
-    searchCustomers: query => dispatch(searchCustomers(query))
+    searchCustomers: query => dispatch(searchCustomers(query)),
+    getServicesListAction: () => dispatch(getServicesList())
   };
 };
 

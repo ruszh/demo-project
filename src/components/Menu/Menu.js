@@ -8,6 +8,7 @@ import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 const StyledSideNav = styled(SideNav)`
   background: #007bff;
   margin-right: 64px;
+  position: fixed;
 `;
 
 class Menu extends Component {

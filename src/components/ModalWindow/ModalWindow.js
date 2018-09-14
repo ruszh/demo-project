@@ -102,7 +102,7 @@ class ModalWindow extends Component {
               <textarea
                 className="form-control not-edit"
                 name="notes"
-                placeholder="Date of birth"
+                placeholder="Notes"
                 value={customer.notes}
                 disabled={!editMode}
               />
