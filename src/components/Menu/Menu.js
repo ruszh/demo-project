@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Menu.css";
 import styled from "styled-components";
 import SideNav, { NavItem, NavText, NavIcon } from "@trendmicro/react-sidenav";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 
 const StyledSideNav = styled(SideNav)`
@@ -12,9 +12,14 @@ const StyledSideNav = styled(SideNav)`
 `;
 
 class Menu extends Component {
-  state = {
-    selected: "customers"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: "customers"
+    };
+  }
+  
+
   render() {
     const { toggle } = this.props;
     return (
@@ -24,7 +29,6 @@ class Menu extends Component {
             selected: selected
           });
           
-          console.log(this.state);
         }}
         onToggle={toggle}
       >
@@ -38,22 +42,11 @@ class Menu extends Component {
               />
             </NavIcon>
             <NavText title="customers">
-              <Link to="/">Customers</Link>
+              <NavLink to="/">Customers</NavLink>
             </NavText>
           </NavItem>
         </SideNav.Nav>
-        <SideNav.Nav>
-          <NavItem eventKey="companies">
-            <NavIcon>
-              <i
-                className="fa fa-fw fa-home"
-                style={{ fontSize: "1.75em", verticalAlign: "middle" }}
-              />
-            </NavIcon>
-            <NavText title="companies">
-              <Link to="/companies">Companies</Link>
-            </NavText>
-          </NavItem>
+        <SideNav.Nav>          
           <NavItem eventKey="services">
             <NavIcon>
               <i
@@ -62,7 +55,7 @@ class Menu extends Component {
               />
             </NavIcon>
             <NavText title="services">
-              <Link to="/services">Services</Link>
+              <NavLink to="/services">Services</NavLink>
             </NavText>
           </NavItem>
         </SideNav.Nav>

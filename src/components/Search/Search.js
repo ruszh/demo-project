@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class Search extends Component {
   state = {
@@ -17,7 +17,7 @@ class Search extends Component {
       this.setState({
         value: e.target.value
       });
-    } 
+    }
   };
 
   searchHandler = () => {
@@ -40,9 +40,15 @@ class Search extends Component {
             onClick={this.searchHandler}
             className="btn btn-success"
           >
-            Search
+            {/* <i className="material-icons" style={{ fontSize: "24px", paddingRight: '5px' }}>
+              search
+            </i> */}
+            Serach
           </button>
-          <select className="search-select custom-select col-sm-3" onChange={this.changeHandler}>
+          <select
+            className="search-select custom-select col-sm-3"
+            onChange={this.changeHandler}
+          >
             <option defaulvalue="true">Name</option>
             <option value="surname">Surname</option>
             <option value="phone">Phone</option>
@@ -63,6 +69,6 @@ class Search extends Component {
 Search.propTypes = {
   onSearch: PropTypes.func.isRequired,
   getCustomers: PropTypes.func.isRequired
-}
+};
 
 export default Search;

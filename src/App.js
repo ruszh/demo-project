@@ -6,11 +6,12 @@ import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
+import SideNav, { NavItem, NavText, NavIcon } from "@trendmicro/react-sidenav";
+import "@trendmicro/react-sidenav/dist/react-sidenav.css";
+
 //Components
 import CustomersList from "./components/CustomersList/CustomersList";
 import ServicesList from "./components/ServicesList/ServicesList";
-import Companies from "./components/Companies/Companies";
-import Menu from "./components/Menu/Menu";
 
 class App extends Component {
   state = {
@@ -34,38 +35,71 @@ class App extends Component {
 
     return (
       <Router>
-        <div className="App">
-          <Menu toggle={this.toggleMenu} />
-          <div
-            className="main-wrapper"
-            style={{
-              marginLeft: this.state.menuExpanded ? 240 : 64
-            }}
-          >
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <CustomersList
-                  customersList={customersList.customersList}
-                  isLoading={customersList.isLoading}
-                  getCustomers={getCustomersListAction}
-                  search={searchCustomers}
-                />
-              )}
-            />
-            <Route
-              path="/services"
-              render={() => (
-                <ServicesList
-                  servicesList={servicesList.servicesList}
-                  isLoading={servicesList.isLoading}
-                  getServicesList={getServicesListAction}
-                />
-              )}
-            />
-            <Route path="/companies" render={props => <Companies />} />
-          </div>
+        <div className="app">
+          <Route
+            render={({ location, history }) => (
+              <React.Fragment>
+                <SideNav
+                  style={{
+                    background: "#007bff",
+                    position: "fixed"
+                  }}
+                  onSelect={selected => {
+                    const to = "/" + selected;
+                    if (location.pathname !== to) {
+                      history.push(to);
+                    }
+                  }}
+                  onToggle={this.toggleMenu}
+                >
+                  <SideNav.Toggle />
+                  <SideNav.Nav defaultSelected="">
+                    <NavItem eventKey="">
+                      <NavIcon>
+                        <i className="material-icons">group</i>
+                      </NavIcon>
+                      <NavText>Customers</NavText>
+                    </NavItem>
+                    <NavItem eventKey="services">
+                      <NavIcon>
+                        <i className="material-icons">local_atm</i>
+                      </NavIcon>
+                      <NavText>Services</NavText>
+                    </NavItem>
+                  </SideNav.Nav>
+                </SideNav>
+                <main
+                  className="main-wrapper"
+                  style={{
+                    marginLeft: this.state.menuExpanded ? 240 : 64
+                  }}
+                >
+                  <Route
+                    exact
+                    path="/"
+                    render={() => (
+                      <CustomersList
+                        customersList={customersList.customersList}
+                        isLoading={customersList.isLoading}
+                        getCustomers={getCustomersListAction}
+                        search={searchCustomers}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/services"
+                    render={() => (
+                      <ServicesList
+                        servicesList={servicesList.servicesList}
+                        isLoading={servicesList.isLoading}
+                        getServicesList={getServicesListAction}
+                      />
+                    )}
+                  />
+                </main>
+              </React.Fragment>
+            )}
+          />
         </div>
       </Router>
     );

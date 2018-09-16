@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateTable from "../CreateTable/CreateTable";
+import TableConstructor from "../TableConstructor/TableConstructor";
 import Preloader from "../Preloader/Preloader";
 import Service from '../Service/Service';
 
@@ -9,7 +9,7 @@ class ServicesList extends Component {
   }
   render() {
     const { servicesList, isLoading } = this.props;
-    const ServicesTable = CreateTable(Service);
+    const ServicesTable = TableConstructor(Service);
     const fields = ['Name', 'Initial Price', 'Price', 'Service Category', 'Time']
     return (
       <div>

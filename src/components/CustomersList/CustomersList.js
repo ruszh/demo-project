@@ -4,8 +4,7 @@ import AddCustomer from "../AddCustomer/AddCustomer";
 import Search from "../Search/Search";
 import PropTypes from "prop-types";
 import Preloader from '../Preloader/Preloader';
-import CreateTable from '../CreateTable/CreateTable';
-// import Menu from "./components/Menu/Menu";
+import TableConstructor from '../TableConstructor/TableConstructor';
 
 class CustomersList extends Component {
   componentWillMount = () => {
@@ -14,8 +13,8 @@ class CustomersList extends Component {
 
   render() {
     const { customersList, search, getCustomers, isLoading } = this.props;
-    const CustomersTable = CreateTable(Customer);
-    const fields = ['Name', 'Surname', 'Phone']
+    const CustomersTable = TableConstructor(Customer);
+    const fields = ['Name', 'Surname', 'Phone', '']
     return (
       <div className="container">
         <h1>Customers</h1>

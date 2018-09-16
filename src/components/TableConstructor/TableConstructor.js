@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-function CreateTable(WrappedComponent) {
+function TableConstructor(WrappedComponent) {
   return class extends Component {
     render() {
       const { items, fields } = this.props;
@@ -27,9 +27,9 @@ function CreateTable(WrappedComponent) {
   };
 }
 
-CreateTable.propTypes = {
+TableConstructor.propTypes = {
   items: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired
 }
 
-export default CreateTable;
+export default TableConstructor;
