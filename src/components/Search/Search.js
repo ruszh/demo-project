@@ -43,7 +43,7 @@ class Search extends Component {
             {/* <i className="material-icons" style={{ fontSize: "24px", paddingRight: '5px' }}>
               search
             </i> */}
-            Serach
+            Search
           </button>
           <select
             className="search-select custom-select col-sm-3"

@@ -16,6 +16,10 @@ class ModalWindow extends Component {
     });
   };
 
+  deleteHandler = () => {
+    this.props.onDelete(this.customer.id)
+  }
+
   handleEdit = () => {
     this.setState({
       editMode: true
@@ -40,7 +44,12 @@ class ModalWindow extends Component {
     const { open, closeModal } = this.props;
     const { customer } = this.state.customer ? this.state : this.props;
     return (
-      <Modal open={open} onClose={closeModal} center>
+      <Modal
+        open={open}
+        onClose={closeModal}
+        center
+        styles={{ modal: { borderRadius: '15px' } }}
+      >
         <div className="container">
           <form onChange={this.handleChange} onSubmit={e => e.preventDefault()}>
             <div className="form-group">
@@ -64,7 +73,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Phone:</label>
+              <label htmlFor="phone">Phone:</label>
               <input
                 type="text"
                 name="phone"
@@ -75,7 +84,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Email address:</label>
+              <label htmlFor="email">Email address:</label>
               <input
                 type="email"
                 name="email"
@@ -87,7 +96,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Date of birth:</label>
+              <label htmlFor="date_of_birth">Date of birth:</label>
               <input
                 type="text"
                 name="date_of_birth"
@@ -98,7 +107,7 @@ class ModalWindow extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Notes:</label>
+              <label htmlFor="notes">Notes:</label>
               <textarea
                 className="form-control not-edit"
                 name="notes"
