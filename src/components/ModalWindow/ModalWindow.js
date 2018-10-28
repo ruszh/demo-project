@@ -58,17 +58,27 @@ class ModalWindow extends Component {
                 name="name"
                 className="form-control not-edit"
                 placeholder="Name"
-                value={customer.name}
+                value={customer.first_name}
                 disabled={!editMode}
               />
             </div>
             <div className="form-group">
               <input
                 type="text"
-                name="surname"
+                name="name"
                 className="form-control not-edit"
-                placeholder="Surname"
-                value={customer.surname}
+                placeholder="Name"
+                value={customer.second_name}
+                disabled={!editMode}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                name="name"
+                className="form-control not-edit"
+                placeholder="Name"
+                value={customer.third_name}
                 disabled={!editMode}
               />
             </div>

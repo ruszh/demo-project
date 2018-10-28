@@ -49,8 +49,9 @@ class Customer extends Component {
 
     return (
       <tr>
-        <td>{customer.name}</td>
-        <td>{customer.surname}</td>
+        <td>{customer.first_name}</td>
+        <td>{customer.second_name}</td>
+        <td>{customer.third_name}</td>
         <td>{customer.phone}</td>
         <td>
           <button className="btn btn-action" onClick={this.onOpenModal}>

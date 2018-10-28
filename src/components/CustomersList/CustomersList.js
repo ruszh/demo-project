@@ -14,7 +14,7 @@ class CustomersList extends Component {
   render() {
     const { customersList, search, getCustomers, isLoading } = this.props;
     const CustomersTable = TableConstructor(Customer);
-    const fields = ['Name', 'Surname', 'Phone', '']
+    const fields = ['First Name', 'Second name', 'Third name', 'Phone', '']
     return (
       <div className="container">
         <h1>Customers</h1>
